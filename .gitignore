@@ -59,6 +59,10 @@ cmake-build-*/
 # IntelliJ
 out/
 
+.gitignore
+.DS_store
+.mvn*
+
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
@@ -80,7 +84,7 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -111,3 +115,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+
+
+target/classes
+target/generated*
+target/maven*
+target/test-classes*
