@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  mysqldb:
+    image: mysql:8
+    networks:
+      - cab-trips
+    restart: always
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cab
+    container_name: mysqldb
+
+  cab-trips:
+    image: cab-trips-jdbc
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - cab-trips
+    depends_on:
+      - mysqldb
+    #command: sh -c "dockerize -wait tcp://mysqldb:3306 -timeout 300s -wait-retry-interval 30s /sayhello"
+    restart: on-failure:10
+
+networks:
+  cab-trips:
